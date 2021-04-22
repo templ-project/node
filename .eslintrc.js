@@ -19,11 +19,11 @@ module.exports = {
   root: true,
   rules: {
     'consistent-return': 2,
-    'no-else-return': 1,
-    'space-unary-ops': 2,
     indent: [1, 2],
+    'max-lines-per-function': ['error', 20],
+    'max-params': ['error', 3],
+    'no-else-return': 1,
     semi: [1, 'always'],
-    'import/prefer-default-export': 'off',
-    'import/no-extraneous-dependencies': 'off',
+    'space-unary-ops': 2,
   },
 };
