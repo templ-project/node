@@ -11,11 +11,11 @@ module.exports = {
   parserOptions: {ecmaVersion: 2018, sourceType: 'module'},
 
   // uncomment for eslint rules
-  extends: ['eslint:recommended', 'plugin:mocha/recommended'],
+  extends: ['eslint:recommended', 'prettier', 'plugin:mocha/recommended'],
   // uncomment for airbnb rules
   // extends: ['airbnb-base', 'prettier', 'plugin:jest/recommended'],
 
-  plugins: [],
+  plugins: ['prettier'],
   root: true,
   rules: {
     'consistent-return': 2,

@@ -5,9 +5,13 @@ For replacing [Mocha](https://mochajs.org/) with [Jest](https://jestjs.io/), ple
 ### Install Jest packages
 
 ```bash
-npm i -D jest
-# yarn add --dev jest
+npm i -D jest eslint-plugin-jest
+# yarn add --dev jest eslint-plugin-jest
 ```
+
+### Configure .eslintrjc.js
+
+Open `./.eslintjrc.js` and replace `plugin:mocha/recommended` with `plugin:jest/recommended` under `extends` key.
 
 ### Configure package.json
 
