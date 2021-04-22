@@ -29,10 +29,10 @@
 >
 > **node** implements:
 >
-> - [jscpd](https://github.com/kucherenko/jscpd), [dependency-cruiser](https://github.com/sverweij/dependency-cruiser) for code analisys
+> - [jscpd](https://github.com/kucherenko/jscpd), [dependency-cruiser](https://github.com/sverweij/dependency-cruiser), [sonarqube](https://www.sonarqube.org/) for code analisys.
 > - [prettier](https://prettier.io/) for code formatting
-> - [eslint](https://eslint.org/) (using either default rules or [airbnb](https://github.com/airbnb)'s one) for linting
-> - [mocha](https://mochajs.org/) for unit testing. For [jest](https://jestjs.io/) please see [Using Jest](manual/using-jest.md).
+> - [eslint](https://eslint.org/) (using either default rules or) for linting. For [airbnb](https://github.com/airbnb) see [Using Airbnb](manual/using-using-esling-airbnb.md)
+> - [mocha](https://mochajs.org/) for unit testing. For [jest](https://jestjs.io/) see [Using Jest](manual/using-jest.md).
 >
 > By default, this implementation uses [npm](https://www.npmjs.com/), but you can easily change it to [yarn](https://yarnpkg.com/) or [pnpm](https://pnpm.js.org/) or any other package manager.
 

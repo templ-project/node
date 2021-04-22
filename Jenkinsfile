@@ -8,6 +8,8 @@ pipeline {
 
   environment {
     NVM_DIR = "${HOME}/.nvm"
+    NODE_VERSIONS = "11 12 13 14 15"
+    NODE_VERSION_DEFAULT = "14"
   }
 
   stages {
@@ -29,129 +31,69 @@ pipeline {
       }
     }
 
-    // Mocha
-
-    stage('Testing CoffeeScript, EsLint, Mocha') {
+    stage('Code Analysis') {
       steps {
         script {
-          testing('coffee', 'eslint', 'mocha')
-        }
-      }
-    }
-    stage('Testing CoffeeScript, EsLint/Airbnb, Mocha') {
-      steps {
-        script {
-          testing('coffee', 'airbnb', 'mocha')
-        }
-      }
-    }
-
-    stage('Testing Flow, EsLint, Mocha') {
-      steps {
-        script {
-          testing('flow', 'eslint', 'mocha')
-        }
-      }
-    }
-    stage('Testing Flow, EsLint/Airbnb, Mocha') {
-      steps {
-        script {
-          testing('flow', 'airbnb', 'mocha')
+          sh """
+            . ~/.bashrc > /dev/null;
+            set -ex;
+            for version in ${NODE_VERSIONS}; do \\
+              nvm use \$version; \\
+              npm run prettier:write; \\
+              npm run lint:write; \\
+              npm run jscpd; \\
+              npm run depcruise; \\
+            done
+            """
         }
       }
     }
 
-    stage('Testing JavaScript, EsLint, Mocha') {
+    stage('Code UnitTests') {
       steps {
         script {
-          testing('javascript', 'eslint', 'mocha')
-        }
-      }
-    }
-    stage('Testing JavaScript, EsLint/Airbnb, Mocha') {
-      steps {
-        script {
-          testing('javascript', 'airbnb', 'mocha')
-        }
-      }
-    }
-
-    stage('Testing TypeScript, EsLint, Mocha') {
-      steps {
-        script {
-          testing('typescript', 'eslint', 'mocha')
-        }
-      }
-    }
-    stage('Testing TypeScript, EsLint/Airbnb, Mocha') {
-      steps {
-        script {
-          testing('typescript', 'airbnb', 'mocha')
+          sh """
+            . ~/.bashrc > /dev/null;
+            set -ex;
+            for version in ${NODE_VERSIONS}; do \\
+              nvm use \$version; \\
+              npm run test; \\
+            done
+            """
         }
       }
     }
 
-    // Jest
-
-    stage('Testing CoffeeScript, EsLint, Jest') {
+    stage('Code Docs') {
       steps {
         script {
-          testing('coffee', 'eslint', 'jest')
-        }
-      }
-    }
-    stage('Testing CoffeeScript, EsLint/Airbnb, Jest') {
-      steps {
-        script {
-          testing('coffee', 'airbnb', 'jest')
+          sh """
+            . ~/.bashrc > /dev/null;
+            set -ex;
+            nvm use ${NODE_VERSION_DEFAULT}; \\
+            npm run docs;
+            """
         }
       }
     }
 
-    stage('Testing Flow, EsLint, Jest') {
-      steps {
-        script {
-          testing('flow', 'eslint', 'jest')
-        }
-      }
-    }
-    stage('Testing Flow, EsLint/Airbnb, Jest') {
-      steps {
-        script {
-          testing('flow', 'airbnb', 'jest')
-        }
-      }
-    }
-
-    stage('Testing JavaScript, EsLint, Jest') {
-      steps {
-        script {
-          testing('javascript', 'eslint', 'jest')
-        }
-      }
-    }
-    stage('Testing JavaScript, EsLint/Airbnb, Jest') {
-      steps {
-        script {
-          testing('javascript', 'airbnb', 'jest')
-        }
-      }
-    }
-
-    stage('Testing TypeScript, EsLint, Jest') {
-      steps {
-        script {
-          testing('typescript', 'eslint', 'jest')
-        }
-      }
-    }
-    stage('Testing TypeScript, EsLint/Airbnb, Jest') {
-      steps {
-        script {
-          testing('typescript', 'airbnb', 'jest')
-        }
-      }
-    }
+    // stage('SonarCloud ') {
+    //   steps {
+    //     script {
+    //       withCredentials([
+    //         string(credentialsId: 'sonar_server_host', variable: 'SONAR_HOST'),
+    //         string(credentialsId: 'sonar_server_login', variable: 'SONAR_LOGIN')
+    //       ]) {
+    //         sh """
+    //           . ~/.bashrc > /dev/null;
+    //           set -ex;
+    //           nvm use ${NODE_VERSION_DEFAULT}; \\
+    //           npm run sonar -- -Dsonar.host.url=${SONAR_HOST} -Dsonar.login=${SONAR_LOGIN};
+    //           """
+    //       }
+    //     }
+    //   }
+    // }
   }
   post {
     // https://www.jenkins.io/doc/pipeline/tour/post/
@@ -191,15 +133,4 @@ pipeline {
       }
     }
   }
-}
-
-def testing(def lang, def lint, def test) {
-  sh """
-    . ~/.bashrc > /dev/null;
-    set -ex;
-    for version in 11 12 13 14 15; do \\
-      nvm use \$version; \\
-      bash ./.scripts/travis-test.sh ${lang} ${lint} ${test}; \\
-    done
-    """
 }

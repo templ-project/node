@@ -1,8 +1,8 @@
 language: node_js
 os:
   - linux
-  - osx
-  - windows
+  # - osx
+  # - windows
 node_js: # a good example: https://github.com/pillarjs/router/blob/master/.travis.yml
   - "10"
   - "11"
@@ -15,15 +15,17 @@ sudo: false
 cache:
   directories:
     - node_modules
-before_script:
-  - npm run change:language -- $LANGUAGE
 scripts:
   - set -e
-  - bash .scripts/travis-test.sh mocha
-  - bash .scripts/travis-test.sh jest
+  - npm run prettier:write
+  - npm run lint:write
+  - npm run jscpd
+  - npm run depcruise
+  - npm run test
 after_script:
-  - if [[ $TRAVIS_NODE_VERSION == '12' && $TRAVIS_OS_NAME == 'linux' ]]; then npm run docs;
-    if [[ $LANGUAGE == 'typescript' ]]; then sonar-scanner; fi;
+  - if [[ $TRAVIS_NODE_VERSION == '14' && $TRAVIS_OS_NAME == 'linux' ]]; then
+      npm run docs;
+      sonar-scanner; fi;
     fi
 notifications:
   email:

@@ -5,6 +5,7 @@
   "main": "src/index.js",
   "scripts": {
     "depcruise": "depcruise --config .dependency-cruiser.js src",
+    "docs": "documentation build src/** -f html -o docs; documentation build src/** -f json -o docs.json",
     "doc:watch": "nodemon --exec 'npm run doc'",
     "git-hook:pre-commit": "npm run prettier:write && npm run lint:write && npm run jscpd && npm run depcruise && npm run test",
     "inspector": "jsinspector server --port 9543",
@@ -19,7 +20,7 @@
     "prettier:write": "npm run prettier -- --write",
     "prettier": "prettier ./{src,test}/**/*.js",
     "release": "release-it --ci --no-npm.publish",
-    "test:junit": "npm run test -- --reporter mocha-junit-reporter --reporter-options mochaFile=.junit.xml",
+    "sonar": "sonar-scanner",
     "test:junit": "npm run test -- --reporter mocha-junit-reporter --reporter-options mochaFile=.junit.xml",
     "test:single": "cross-env NODE_ENV=test nyc --reporter=html --reporter=lcov --reporter=text --extension .js mocha --forbid-only",
     "test:watch": "nodemon --exec 'npm run test'",
@@ -72,10 +73,21 @@
     "rimraf": "^3.0.2",
     "rollup": "^2.38.4",
     "semver": "^7.3.4",
+    "sonarqube-scanner": "^2.8.0",
     "twig": "^1.15.4",
     "winston": "^3.3.3"
   },
   "peerDependencies": {},
-  "husky": {"hooks": {"commit-msg": "commitlint -E HUSKY_GIT_PARAMS", "pre-commit": "npm run git-hook:pre-commit"}},
-  "importSort": {".js, .jsx, .ts, .tsx": {"parser": "babylon", "style": "module"}}
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
+      "pre-commit": "npm run git-hook:pre-commit"
+    }
+  },
+  "importSort": {
+    ".js, .jsx, .ts, .tsx": {
+      "parser": "babylon",
+      "style": "module"
+    }
+  }
 }
