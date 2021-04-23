@@ -14,7 +14,7 @@
     "lint:watch": "nodemon --exec 'npm run lint'",
     "lint:write": "npm run lint -- --fix",
     "lint": "eslint ./{src,test}/**/*.js",
-    "lint:log": "npm run lint -- -f json -o .eslint-output.json https://www.youtube.com/watch?v=kghYozZD6UQ",
+    "lint:log": "npm run lint -- -f json -o .eslint-output.json",
     "predocs": "rimraf docs",
     "prerelease": "npm run build",
     "prettier:check": "npm run prettier -- --list-different",

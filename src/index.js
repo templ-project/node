@@ -5,12 +5,19 @@ module.exports = {
 };
 
 const curlyTest = (a, b, c, d) => {
-  if (a < 0) a++;
-  else console.log(foo);
+  if (a < 0) {
+    a++;
+  } else {
+    console.log(foo);
+  }
 
-  while (a === true) console.log('test');
+  while (a === true) {
+    console.log('test');
+  }
 
-  for (let x of [a, b, c, d]) console.log(x);
+  for (let x of [a, b, c, d]) {
+    console.log(x);
+  }
 };
 
 function returnValue(a) {
@@ -24,12 +31,12 @@ function returnValue(a) {
   }
 
   switch (a) {
-    case 0:
-      doSomething();
-      break;
-    default:
-      doSomethingElse();
-      break;
+  case 0:
+    doSomething();
+    break;
+  default:
+    doSomethingElse();
+    break;
   }
 
   return 3;
