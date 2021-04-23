@@ -51,6 +51,7 @@ package-lock.json
 
 # Optional eslint cache
 .eslintcache
+.eslint-output.json
 
 # Optional REPL history
 .node_repl_history
