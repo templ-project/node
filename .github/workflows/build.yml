@@ -9,10 +9,25 @@ jobs:
   sonarcloud:
     name: SonarCloud
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [10.x, 12.x, 14.x, 15.x]
+        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
     steps:
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0  # Shallow clones should be disabled for a better relevancy of analysis
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v2
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Code Analysis
+        run: npm run prettier:write; npm run lint:write; npm run jscpd; npm run depcruise;
+      - name: Code UnitTests
+        run: npm run test
+      - name: Code Docs
+        if: ${{ matrix.node-version == 14.x }}
+        run: npm run docs
       - name: SonarCloud Scan
         uses: SonarSource/sonarcloud-github-action@master
         env:
