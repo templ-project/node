@@ -25,6 +25,8 @@ jobs:
       uses: actions/setup-node@v2
       with:
         node-version: ${{ matrix.node-version }}
+    - name: Init
+      run: npm i
     - name: Code Analysis
       run: npm run prettier:write; npm run lint:write; npm run jscpd; npm run depcruise;
     - name: Code UnitTests
