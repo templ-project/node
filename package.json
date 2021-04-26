@@ -51,6 +51,7 @@
     "chai": "^4.3.4",
     "cross-env": "^7.0.3",
     "dependency-cruiser": "^9.25.1",
+    "docsify-cli": "^4.4.3",
     "documentation": "^13.2.4",
     "enquirer": "^2.3.6",
     "eslint": "^7.19.0",
