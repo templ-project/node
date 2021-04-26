@@ -8,7 +8,7 @@ pipeline {
 
   environment {
     NVM_DIR = "${HOME}/.nvm"
-    NODE_VERSIONS = "11 12 13 14 15"
+    NODE_VERSIONS = "10 12 13 14 15 16"
     NODE_VERSION_DEFAULT = "14"
   }
 
