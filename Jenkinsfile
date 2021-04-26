@@ -31,6 +31,21 @@ pipeline {
       }
     }
 
+    stage('Init') {
+      steps {
+        script {
+          sh """
+            . ~/.bashrc > /dev/null;
+            set -ex;
+            rm -rf ~/.nvm/versions/node/*
+            for version in ${NODE_VERSIONS}; do \\
+              nvm install \$version; \\
+            done
+            """
+        }
+      }
+    }
+
     stage('Code Analysis') {
       steps {
         script {
