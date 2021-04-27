@@ -55,10 +55,7 @@ pipeline {
             for version in ${NODE_VERSIONS}; do \\
               nvm use \$version; \\
               npm i; \\
-              npm run prettier:write; \\
-              npm run lint:write; \\
-              npm run jscpd; \\
-              npm run depcruise; \\
+              npm run ca; \\
             done
             """
         }

@@ -11,8 +11,7 @@ npm i -D jest eslint-plugin-jest
 
 ### Configure .eslintrjc.js
 
-1. Run `yarn add --dev @types/jest`.
-2. Open `./.eslintjrc.js` and replace `plugin:mocha/recommended` with `plugin:jest/recommended` under `extends` key.
+Open `./.eslintjrc.js` and replace `plugin:mocha/recommended` with `plugin:jest/recommended` under `extends` key.
 
 ### Configure package.json
 
