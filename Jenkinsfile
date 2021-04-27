@@ -35,7 +35,7 @@ pipeline {
       steps {
         script {
           sh """
-            . ~/.bashrc > /dev/null;
+            . ~/.bashrc > /dev/null 2>&1;
             set -ex;
             rm -rf ~/.nvm/versions/node/*
             for version in ${NODE_VERSIONS}; do \\
@@ -50,7 +50,7 @@ pipeline {
       steps {
         script {
           sh """
-            . ~/.bashrc > /dev/null;
+            . ~/.bashrc > /dev/null 2>&1;
             set -ex;
             for version in ${NODE_VERSIONS}; do \\
               nvm use \$version; \\
@@ -66,7 +66,7 @@ pipeline {
       steps {
         script {
           sh """
-            . ~/.bashrc > /dev/null;
+            . ~/.bashrc > /dev/null 2>&1;
             set -ex;
             for version in ${NODE_VERSIONS}; do \\
               nvm use \$version; \\
@@ -81,7 +81,7 @@ pipeline {
       steps {
         script {
           sh """
-            . ~/.bashrc > /dev/null;
+            . ~/.bashrc > /dev/null 2>&1;
             set -ex;
             nvm use ${NODE_VERSION_DEFAULT}; \\
             npm run docs;
@@ -98,7 +98,7 @@ pipeline {
     //         string(credentialsId: 'sonar_server_login', variable: 'SONAR_LOGIN')
     //       ]) {
     //         sh """
-    //           . ~/.bashrc > /dev/null;
+    //           . ~/.bashrc > /dev/null 2>&1;
     //           set -ex;
     //           nvm use ${NODE_VERSION_DEFAULT}; \\
     //           npm run sonar -- -Dsonar.host.url=${SONAR_HOST} -Dsonar.login=${SONAR_LOGIN};
