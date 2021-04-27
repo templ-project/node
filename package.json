@@ -4,6 +4,7 @@
   "description": "Node Project Template",
   "main": "src/index.js",
   "scripts": {
+    "ca": "npm run prettier:write && npm run lint:write && npm run jscpd && npm run depcruise",
     "depcruise": "depcruise --config .dependency-cruiser.js src",
     "docs": "documentation build src/** -f html -o docs; documentation build src/** -f json -o docs.json",
     "doc:watch": "nodemon --exec 'npm run doc'",
