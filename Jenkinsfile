@@ -35,7 +35,7 @@ pipeline {
       steps {
         script {
           sh """
-            set -e;
+            set +x;
             . ~/.bashrc;
             set -ex;
             rm -rf ~/.nvm/versions/node/*
@@ -51,7 +51,7 @@ pipeline {
       steps {
         script {
           sh """
-            set -e;
+            set +x;
             . ~/.bashrc;
             set -ex;
             for version in ${NODE_VERSIONS}; do \\
@@ -68,7 +68,7 @@ pipeline {
       steps {
         script {
           sh """
-            set -e;
+            set +x;
             . ~/.bashrc;
             set -ex;
             for version in ${NODE_VERSIONS}; do \\
@@ -84,7 +84,7 @@ pipeline {
       steps {
         script {
           sh """
-            set -e;
+            set +x;
             . ~/.bashrc;
             set -ex;
             nvm use ${NODE_VERSION_DEFAULT}; \\
