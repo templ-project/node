@@ -8,7 +8,7 @@ pipeline {
 
   environment {
     NVM_DIR = "${HOME}/.nvm"
-    NODE_VERSIONS = "11 12 13 14 15"
+    NODE_VERSIONS = "10 12 13 14 15 16"
     NODE_VERSION_DEFAULT = "14"
   }
 
@@ -31,6 +31,21 @@ pipeline {
       }
     }
 
+    stage('Init') {
+      steps {
+        script {
+          sh """
+            . ~/.bashrc > /dev/null;
+            set -ex;
+            rm -rf ~/.nvm/versions/node/*
+            for version in ${NODE_VERSIONS}; do \\
+              nvm install \$version; \\
+            done
+            """
+        }
+      }
+    }
+
     stage('Code Analysis') {
       steps {
         script {
@@ -39,10 +54,8 @@ pipeline {
             set -ex;
             for version in ${NODE_VERSIONS}; do \\
               nvm use \$version; \\
-              npm run prettier:write; \\
-              npm run lint:write; \\
-              npm run jscpd; \\
-              npm run depcruise; \\
+              npm i; \\
+              npm run ca; \\
             done
             """
         }
@@ -58,6 +71,21 @@ pipeline {
             for version in ${NODE_VERSIONS}; do \\
               nvm use \$version; \\
               npm run test; \\
+            done
+            """
+        }
+      }
+    }
+
+    stage('Code Build') {
+      steps {
+        script {
+          sh """
+            . ~/.bashrc > /dev/null;
+            set -ex;
+            for version in ${NODE_VERSIONS}; do \\
+              nvm use \$version; \\
+              npm run build; \\
             done
             """
         }
@@ -99,37 +127,13 @@ pipeline {
     // https://www.jenkins.io/doc/pipeline/tour/post/
     // https://plugins.jenkins.io/telegram-notifications/
     failure {
-      // withCredentials([
-      //   string(credentialsId: 'jk_pipeline_report_to_email', variable: 'TO_EMAIL')
-      // ]) {
-      //   mail to: "${TO_EMAIL}",
-      //       subject: "Failed Pipeline: ${currentBuild.fullDisplayName}",
-      //       body: "Something is wrong with ${env.BUILD_URL}"
-      // }
-
-      withCredentials([
-        string(credentialsId: 'jk_pipeline_report_to_telegram_token', variable: 'TL_TOKEN'),
-        string(credentialsId: 'jk_pipeline_report_to_telegram_chatId', variable: 'TL_CHAT_ID')
-      ]) {
-        TelegramSendStatusFail(TL_TOKEN, TL_CHAT_ID)
+      script {
+        telegram.sendStatusFail('jk_pipeline_report_to_telegram_token','jk_pipeline_report_to_telegram_chatId')
       }
     }
     success {
       script {
-        // withCredentials([
-        //   string(credentialsId: 'jk_pipeline_report_to_email', variable: 'TO_EMAIL')
-        // ]) {
-        //   mail to: "${TO_EMAIL}",
-        //       subject: "Failed Pipeline: ${currentBuild.fullDisplayName}",
-        //       body: "Build finished with success: ${env.BUILD_URL}"
-        // }
-
-        withCredentials([
-          string(credentialsId: 'jk_pipeline_report_to_telegram_token', variable: 'TL_TOKEN'),
-          string(credentialsId: 'jk_pipeline_report_to_telegram_chatId', variable: 'TL_CHAT_ID')
-        ]) {
-          TelegramSendStatusOK(TL_TOKEN, TL_CHAT_ID)
-        }
+        telegram.sendStatusOk('jk_pipeline_report_to_telegram_token','jk_pipeline_report_to_telegram_chatId')
       }
     }
   }

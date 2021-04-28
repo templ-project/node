@@ -17,11 +17,9 @@ cache:
     - node_modules
 scripts:
   - set -e
-  - npm run prettier:write
-  - npm run lint:write
-  - npm run jscpd
-  - npm run depcruise
+  - npm run ca
   - npm run test
+  - npm run build
 after_script:
   - if [[ $TRAVIS_NODE_VERSION == '14' && $TRAVIS_OS_NAME == 'linux' ]]; then
       npm run docs;
