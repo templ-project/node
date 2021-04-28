@@ -102,9 +102,6 @@ git add remote origin https://url/to/your/project/repository
 git add .
 git commit -am "init"
 git push origin master
-npm run change:language # to use javascript
-# or
-# npm run change:language -- typescript # to use typescript
 npm install
 # yarn install
 # pnpm instal

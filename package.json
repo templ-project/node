@@ -4,6 +4,7 @@
   "description": "Node Project Template",
   "main": "src/index.js",
   "scripts": {
+    "ca": "npm run prettier:write && npm run lint:write && npm run jscpd && npm run depcruise",
     "depcruise": "depcruise --config .dependency-cruiser.js src",
     "docs": "documentation build src/** -f html -o docs; documentation build src/** -f json -o docs.json",
     "doc:watch": "nodemon --exec 'npm run doc'",
@@ -51,6 +52,7 @@
     "chai": "^4.3.4",
     "cross-env": "^7.0.3",
     "dependency-cruiser": "^9.25.1",
+    "docsify-cli": "^4.4.3",
     "documentation": "^13.2.4",
     "enquirer": "^2.3.6",
     "eslint": "^7.19.0",

@@ -27,5 +27,22 @@ Open `./package.json` and replace all the `"test*"` commands with the following
 
 * Open `./test/index.test.js`
 * Comment or remove everything related to Mocha
+  1. Clean `mocha` & `chai` packages from `package.json`
+  2. Remove `.mocharc.js`
 * Uncomment the commented Jest unit test.
+* Add the content bellow to `jest.config.js`
 * Happy testing!
+
+```javascript
+// jest.config.js
+
+module.exports = {
+  clearMocks: true,
+  coverageDirectory: 'coverage',
+  moduleFileExtensions: ['js', 'json', 'jsx', 'ts', 'tsx'],
+  // rootDir: '.',
+  roots: ['test'],
+  testEnvironment: 'node',
+  transform: {'^.+\\.(t|j)s$': 'ts-jest'},
+};
+```
