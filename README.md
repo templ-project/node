@@ -11,8 +11,15 @@
 <!-- [![CircleCI](https://circleci.com/gh/templ-project/node.svg?style=shield)](https://circleci.com/gh/templ-project/node) -->
 
 [![Sonarcloud Status](https://sonarcloud.io/api/project_badges/measure?project=templ-project_node&metric=alert_status)](https://sonarcloud.io/dashboard?id=templ-project_node)
+[![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=templ-project_node&metric=code_smells)](https://sonarcloud.io/dashboard?id=templ-project_node)
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=templ-project_node&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=templ-project_node)
+[![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=templ-project_node&metric=reliability_rating)](https://sonarcloud.io/dashboard?id=templ-project_node)
+[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=templ-project_node&metric=security_rating)](https://sonarcloud.io/dashboard?id=templ-project_node)
+
+[![Lines of Code](https://sonarcloud.io/api/project_badges/measure?project=templ-project_node&metric=ncloc)](https://sonarcloud.io/dashboard?id=templ-project_node)
 [![SonarCloud Coverage](https://sonarcloud.io/api/project_badges/measure?project=templ-project_node&metric=coverage)](https://sonarcloud.io/component_measures/metric/coverage/list?id=templ-project_node)
 [![SonarCloud Bugs](https://sonarcloud.io/api/project_badges/measure?project=templ-project_node&metric=bugs)](https://sonarcloud.io/component_measures/metric/reliability_rating/list?id=templ-project_node)
+[![Technical Debt](https://sonarcloud.io/api/project_badges/measure?project=templ-project_node&metric=sqale_index)](https://sonarcloud.io/dashboard?id=templ-project_node)
 [![SonarCloud Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=templ-project_node&metric=vulnerabilities)](https://sonarcloud.io/component_measures/metric/security_rating/list?id=templ-project_node)
 
 <!-- Donation Badges -->
@@ -114,7 +121,7 @@ npm install
 
 - Please install [NodeJs](https://nodejs.org/en/). We support version 10.x and above.
 - Please instal a JavaScript/TypeScript IDE
-  - [Visual Studio Code](https://code.visualstudio.com/) with [ITMCDev Babel Extension Pack](https://marketplace.visualstudio.com/items?itemName=itmcdev.node-babel-extension-pack) or [ITMCDev TypeScript Extension Pack](https://marketplace.visualstudio.com/items?itemName=itmcdev.node-typescript-extension-pack)
+  - [Visual Studio Code](https://code.visualstudio.com/) with [ITMCDev Babel Extension Pack](https://marketplace.visualstudio.com/items?itemName=itmcdev.node-extension-pack) or [ITMCDev TypeScript Extension Pack](https://marketplace.visualstudio.com/items?itemName=itmcdev.node-typescript-extension-pack)
   - [Jetbrains WebStorm](https://www.jetbrains.com/webstorm/)
   - [Vim](https://www.vim.org/) with [neoclide/coc.nvim](https://github.com/neoclide/coc.nvim) and [HerringtonDarkholme/yats.vim](https://github.com/HerringtonDarkholme/yats.vim) extensions.
   - Any other IDE you trust.
