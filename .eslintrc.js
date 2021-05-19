@@ -7,19 +7,35 @@ module.exports = {
     node: true,
     mocha: true,
   },
-  parser: 'babel-eslint',
+  parser: '@babel/eslint-parser',
   parserOptions: {ecmaVersion: 2018, sourceType: 'module'},
 
   // uncomment for eslint rules
   extends: [
-    // uncomment to add airbnb rules
+    /************************************************************************
+     * Uncomment to add airbnb rules. Don't forget you need to install
+     * the airbnb eslint plugin.
+     * ```bash
+     * npm i -D eslint-config-airbnb-base
+     * # or
+     * yarn add --dev eslint-config-airbnb-base
+     * ```
+     */
     // 'airbnb/base'
     'plugin:mocha/recommended',
     'plugin:sonar/recommended',
     'plugin:sonarjs/recommended',
     // comment to remove mocha rules
     'plugin:mocha/recommended',
-    // uncomment to add jest rules
+    /************************************************************************
+     * Uncomment to add jest rules. Don't forget you need to install
+     * the jest eslint plugin.
+     * ```bash
+     * npm i -D eslint-plugin-jest
+     * # or
+     * yarn add --dev eslint-plugin-jest
+     * ```
+     */
     // 'plugin:jest/recommended',
     'prettier',
   ],
